@@ -5,7 +5,14 @@ const catageorySchema= new Schema({
     name:{
         type:String,
         required: true,
-    }
+    },
+    color:{
+        type:String,
+    },
+    icon:{
+        type:String,
+      //  required:true, //depend upon the UI/UX
+    },
 }) ;
 
-module.exports= mongoose.model('Catageory',catageorySchema);
+module.exports= mongoose.model('Category',catageorySchema);
