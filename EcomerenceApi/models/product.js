@@ -21,9 +21,10 @@ image:{
     required:true,
 },
 // keh image array kis type ke ai ge
-images:[{
-    typr:String,
-}],
+images:{
+    type:[String],
+    value:[String],
+},
 brand:{
     type:String,
     default:""
