@@ -37,10 +37,12 @@ app.get('/',(req,res)=>{
 //Routes
 const ProductRoute=require("./routes/product");
 const CatageoryRoute=require("./routes/catageory");
+const UserRoute=require('./routes/user');
 
 // midlewares 
 app.use(`${api}/products`,ProductRoute);
 app.use(`${api}/category`,CatageoryRoute);
+app.use(`${api}/user`,UserRoute);
 
 
 app.listen(port,()=>{
