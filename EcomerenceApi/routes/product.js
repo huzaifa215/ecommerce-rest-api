@@ -105,6 +105,45 @@ router.put('/:id',async (req,res)=>{
     }
 });
 
+router.delete('/:id',(req,res)=>{
+    // done by promise
+    ProductDB.findByIdAndRemove(req.params.id).then((product)=>{
+        if(product){
+            return res.status(200).json({success:true,message:"The product deleted successfully"});
+        }else{
+            return res.status(404).json({success:false,message:"Product Not found"});
+        }
+    }).catch((err)=>{
+          return res.status(400).json({success:false,error:err}); 
+    });
+});
+
+// get products by categeory
+
+router.get('/category/:categoryid',async(req,res)=>{
+    const category = await CategoryDB.findById(req.params.id);
+    if(category) return res.status(500).send({message:"The category is invaild or not exits"}); 
+    try{
+        const products = await ProductDB.find({category:req.params.categoryid});
+        res.send(products);
+    }catch(err){
+        res.send(err);
+    }
+});
+
+
+// get count the products
+router.get('/get/count',async (req,res)=>{
+    try{
+
+        const product= await ProductDB.countDocuments((count)=>count);
+        if(!product) return res.status(404).send({message:"Id doesnot find"});
+
+        res.send({productscount:product});
+    }catch(err){
+        res.json(err);
+    }
+});
 
 
 // router.post('/',async (req,res)=>{

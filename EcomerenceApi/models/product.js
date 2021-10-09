@@ -63,6 +63,12 @@ dateCreated:{
 },
 
 });
-
+// changing _id to id
+productSchema.virtual('id').get(function(){
+ return this._id.toHexString();
+});
+productSchema.set('toJSON',{
+    virtuals:true,
+});
 // export the module
 module.exports=mongoose.model('Products',productSchema);

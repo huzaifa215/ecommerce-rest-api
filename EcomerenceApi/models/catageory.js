@@ -14,5 +14,11 @@ const catageorySchema= new Schema({
       //  required:true, //depend upon the UI/UX
     },
 }) ;
+catageorySchema.virtual('id').get(function(){
+    return this._id.toHexString();
+   });
+   catageorySchema.set('toJSON',{
+       virtuals:true,
+   });
 
 module.exports= mongoose.model('Category',catageorySchema);
